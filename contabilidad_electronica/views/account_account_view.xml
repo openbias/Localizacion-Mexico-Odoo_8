@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Vista de las polizas -->
+        <record id="account_move_form_inherit_sat" model="ir.ui.view">
+            <field name="name">account.move.form.inherit.sat</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <field name="journal_id" position="after">
+                    <field name="tipo_poliza"/>
+                </field>
+                <xpath
+                    expr="//field[@name='line_id']/form/notebook"
+                    position="inside">
+                    <page string="Comprobantes">
+                        <separator string="CFDI" colspan="4"/>
+                        <field name="comprobantes" nolabel="1" colspan="4" readonly="0" >
+                            <tree string="Comprobantes" editable="bottom">
+                                <field name="uuid"/>
+                                <field name="monto"/>
+                                <field name="rfc"/>
+                                <field name="moneda"/>
+                                <field name="tipo_cambio"/>
+                            </tree>
+                        </field>
+                        <separator string="CFD o CBB" colspan="4" />
+                        <field name="comprobantes_cfd_cbb" nolabel="1" colspan="4">
+                            <tree string="Comprobantes (CFD o CBB)" editable="bottom">
+                                <field name="serie"/>
+                                <field name="folio"/>
+                                <field name="rfc"/>
+                                <field name="monto"/>
+                                <field name="moneda"/>
+                                <field name="tipo_cambio"/>
+                            </tree>
+                        </field>
+                        <separator string="Extranjeros" colspan="4" />
+                        <field name="comprobantes_ext" nolabel="1" colspan="4">
+                            <tree string="Comprobantes extranjeros" editable="bottom">
+                                <field name="num"/>
+                                <field name="tax_id"/>
+                                <field name="monto"/>
+                                <field name="moneda"/>
+                                <field name="tipo_cambio"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Pagos">  
+                        <separator string="Transferencias" colspan="4" />
+                        <field name="transferencias" nolabel="1" colspan="4" >
+                            <tree string="Transferencias" editable="bottom">
+                                <field name="cta_ori"/>
+                                <field name="cta_dest"/>
+                                <field name="fecha"/>
+                                <field name="monto"/>
+                                <field name="moneda"/>
+                                <field name="tipo_cambio"/>
+                            </tree>
+                        </field>
+                        <separator string="Cheques" colspan="4" />
+                        <field name="cheques" nolabel="1" colspan="4">
+                            <tree string="Cheques" editable="bottom">
+                                <field name="num"/>
+                                <field name="cta_ori"/>
+                                <field name="fecha"/>
+                                <field name="monto"/>
+                                <field name="moneda"/>
+                                <field name="tipo_cambio"/>
+                            </tree>
+                        </field>
+                        <separator string="Otros métodos de pago" colspan="4" />
+                        <field name="otros_metodos" nolabel="1" colspan="4">
+                            <tree string="Otros métodos de pago" editable="bottom">
+                                <field name="metodo"/>
+                                <field name="fecha"/>
+                                <field name="benef"/>
+                                <field name="monto"/>
+                                <field name="moneda"/>
+                                <field name="tipo_cambio"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+
+        <!-- Vista de las transacciones -->
+        <record id="view_move_line_form_inherit" model="ir.ui.view">
+            <field name="name">view.move.line.form.inherit</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account.view_move_line_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Comprobantes">
+                        <separator string="CFDI"/>
+                        <field name="comprobantes">
+                            <tree string="Comprobantes" editable="bottom">
+                                <field name="uuid"/>
+                                <field name="monto"/>
+                                <field name="rfc"/>
+                                <field name="moneda"/>
+                                <field name="tipo_cambio"/>
+                            </tree>
+                        </field>
+                        <separator string="CFD o CBB"/>
+                        <field name="comprobantes_cfd_cbb">
+                            <tree string="Comprobantes (CFD o CBB)" editable="bottom">
+                                <field name="serie"/>
+                                <field name="folio"/>
+                                <field name="rfc"/>
+                                <field name="monto"/>
+                                <field name="moneda"/>
+                                <field name="tipo_cambio"/>
+                            </tree>
+                        </field>
+                        <separator string="Extranjeros"/>
+                        <field name="comprobantes_ext">
+                            <tree string="Comprobantes extranjeros" editable="bottom">
+                                <field name="num"/>
+                                <field name="tax_id"/>
+                                <field name="monto"/>
+                                <field name="moneda"/>
+                                <field name="tipo_cambio"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Pagos">  
+                        <separator string="Transferencias"/>
+                        <field name="transferencias">
+                            <tree string="Transferencias" editable="bottom">
+                                <field name="cta_ori"/>
+                                <field name="cta_dest"/>
+                                <field name="fecha"/>
+                                <field name="monto"/>
+                                <field name="moneda"/>
+                                <field name="tipo_cambio"/>
+                            </tree>
+                        </field>
+                        <separator string="Cheques"/>
+                        <field name="cheques">
+                            <tree string="Cheques" editable="bottom">
+                                <field name="num"/>
+                                <field name="cta_ori"/>
+                                <field name="fecha"/>
+                                <field name="monto"/>
+                                <field name="moneda"/>
+                                <field name="tipo_cambio"/>
+                            </tree>
+                        </field>
+                        <separator string="Otros métodos de pago"/>
+                        <field name="otros_metodos">
+                            <tree string="Otros métodos de pago" editable="bottom">
+                                <field name="metodo"/>
+                                <field name="fecha"/>
+                                <field name="benef"/>
+                                <field name="monto"/>
+                                <field name="moneda"/>
+                                <field name="tipo_cambio"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </field>
+        </record>          
+
+        <!-- Account Account -->
+        <record id="view_account_form_inherit" model="ir.ui.view">
+            <field name="name">view.account.form.inherit</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <label for="note" position="before">
+                        <group string="Contabilidad electrónica">
+                            <field name="codigo_agrupador" options="{'no_create': True, 'no_open':True}" style="width:40%%"/>
+                            <field name="naturaleza" options="{'no_create': True, 'no_open':True}" style="width:40%%"/>
+                        </group>
+                    </label>
+                </data>
+            </field>
+        </record>            
+        <record id="view_account_list_inherit" model="ir.ui.view">
+            <field name="name">view.account.form.list</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_list"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="code" position="after">
+                        <field name="codigo_agrupador"/>
+                        <field name="naturaleza"/>
+                    </field>
+                </data>
+            </field>
+        </record>
+        <record id="view_account_inherit_tree" model="ir.ui.view">
+            <field name="name">view.account.inherit.tree</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_tree"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="code" position="after">
+                        <field name="codigo_agrupador"/>
+                        <field name="naturaleza"/>
+                    </field>
+                </data>
+            </field>
+        </record>
+        <record id="view_account_search_inherit" model="ir.ui.view">
+            <field name="name">view.account.search.list</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_search"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="name" position="after">
+                        <field name="codigo_agrupador"/>
+                        <field name="naturaleza"/>
+                    </field>
+                </data>
+            </field>
+        </record>
+
+    </data>
+</openerp>

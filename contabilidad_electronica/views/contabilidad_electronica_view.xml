@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Menú configuración -->
+    
+        <menuitem 
+            id="menu_contabilidad_electronica"
+            name="Contabilidad Electrónica"
+            parent="bias_base.menu_localizacion_mexico_root"
+            sequence="150" />
+
+
+        <menuitem id="menu_configuracion_contabilidad_electronica" name="Contabilidad electrónica SAT"
+                parent="account.menu_finance_configuration"/>
+
+
+
+        <!-- Tabla de código agrupador -->    
+        <record id="codigo_agrupador_view_tree" model="ir.ui.view">
+            <field name="name">codigo.agrupador.view.tree</field>
+            <field name="model">contabilidad_electronica.codigo.agrupador</field>
+            <field name="arch" type="xml">
+                <tree string="Codigo agrupador" editable="bottom">
+                    <field name="nivel"/>
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+        <record id="codigo_agrupador_view_filter" model="ir.ui.view">
+            <field name="name">Codigo Agrupador</field>
+            <field name="model">contabilidad_electronica.codigo.agrupador</field>
+            <field name="arch" type="xml">
+                <search string="Search Journal Items">
+                    <field name="nivel" string="Nivel"/>
+                    <field name="description" string="Name"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Nivel" icon="terp-partner" domain="[]" context="{'group_by':'nivel'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="act_open_codigo_agrupador" model="ir.actions.act_window">
+            <field name="name">Código Agrupador</field>
+            <field name="res_model">contabilidad_electronica.codigo.agrupador</field>
+            <field name="view_id" ref="codigo_agrupador_view_tree"/>
+            <field name="view_mode">list,form</field>
+            <field name="view_type">tree</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Seleccione el nivel y el nombre que desea filtrar.
+              </p><p>
+              </p>
+            </field>
+        </record>
+
+        <menuitem action="act_open_codigo_agrupador" id="menu_open_codigo_agrupador"
+            parent="menu_contabilidad_electronica" sequence="1"/>  
+
+        <!-- Tabla naturaleza cuenta -->
+        <record id="naturaleza_view_tree" model="ir.ui.view">
+            <field name="name">naturaleza.view.tree</field>
+            <field name="model">contabilidad_electronica.naturaleza</field>
+            <field name="arch" type="xml">
+                <tree string="Naturaleza" editable="bottom">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>    
+        <record id="act_open_naturaleza" model="ir.actions.act_window">
+            <field name="name">Naturaleza cuenta</field>
+            <field name="res_model">contabilidad_electronica.naturaleza</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_type">tree</field>
+        </record>
+        <menuitem action="act_open_naturaleza" id="menu_open_naturaleza"
+            parent="menu_contabilidad_electronica" sequence="2"/>
+
+
+        <!-- Tabla metodo de pago -->
+        <record id="metodopago_view_tree" model="ir.ui.view">
+            <field name="name">metodopago.view.tree</field>
+            <field name="model">contabilidad_electronica.metodo.pago</field>
+            <field name="arch" type="xml">
+                <tree string="Método de pago" editable="bottom">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>    
+        <record id="act_open_metodopago" model="ir.actions.act_window">
+            <field name="name">Métodos de pago</field>
+            <field name="res_model">contabilidad_electronica.metodo.pago</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_type">tree</field>
+        </record>
+        <menuitem action="act_open_metodopago" id="menu_open_metodopago"
+            parent="menu_contabilidad_electronica" sequence="3"/>
+
+        <!-- Tabla bancos -->
+        <record id="bancos_view_tree" model="ir.ui.view">
+            <field name="name">bancos.view.tree</field>
+            <field name="model">res.bank</field>
+            <field name="arch" type="xml">
+                <tree string="Banco" editable="bottom">
+                    <field name="code_sat"/>
+                    <field name="name"/>
+                    <field name="razon_social"/>
+                    <field name="extranjero"/>
+                </tree>
+            </field>
+        </record>
+    
+        <record id="act_open_banco" model="ir.actions.act_window">
+            <field name="name">Bancos</field>
+            <field name="res_model">res.bank</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_type">tree</field>
+        </record>
+
+        <menuitem action="act_open_banco" id="menu_open_banco"
+            parent="menu_contabilidad_electronica" sequence="3"/> 
+
+    </data>
+</openerp>

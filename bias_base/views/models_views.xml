@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <menuitem
+            name="Localización México"
+            parent="account.menu_finance"
+            id="menu_localizacion_mexico_root"
+            sequence="100" />
+
+        <menuitem
+            name="Catalogos CFDI"
+            parent="menu_localizacion_mexico_root"
+            id="menu_catalogo_cfdi"
+            sequence="100" />
+
+    </data>
+</openerp>
