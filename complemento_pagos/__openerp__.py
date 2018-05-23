@@ -21,7 +21,7 @@
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
-        "views/account_move_view.xml",
+        "views/account_view.xml",
         # "wizard/validar_facturas_view.xml"
     ],
     'demo': [

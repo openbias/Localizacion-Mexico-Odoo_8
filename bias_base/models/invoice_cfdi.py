@@ -124,12 +124,14 @@ class AccountCfdi(models.Model):
 
     def get_datas(self, obj, cia):
         self.obj = obj
-        self.test = cia.cfd_mx_test
         self.pac = cia.cfd_mx_pac
         self.version = cia.cfd_mx_version
         self.host = cia.cfd_mx_host
         self.port = cia.cfd_mx_port
         self.db = cia.cfd_mx_db
+        self.write({
+            'test': cia.cfd_mx_test
+        })
         return True
 
     def stamp(self, obj):
@@ -147,10 +149,8 @@ class AccountCfdi(models.Model):
             'cfd': self.get_info_pac(),
             'db': self.db
         }
-
         if hasattr(self, '%s_info_relacionados' % ctx['type']):
             self.cfdi_datas['relacionados'] = getattr(self, '%s_info_relacionados' % ctx['type'])()
-
         self.cfdi_datas['comprobante'] = getattr(self, '%s_info_comprobante' % ctx['type'])()
         self.cfdi_datas['emisor'] = getattr(self, '%s_info_emisor' % ctx['type'])()
         self.cfdi_datas['receptor'] = getattr(self, '%s_info_receptor' % ctx['type'])()
@@ -181,10 +181,6 @@ class AccountCfdi(models.Model):
     def action_server(self, url, host, db, params):
         s = Session()
         s.get('%s/web?db=%s'%(host, db))
-        # if self.port:
-        #     s.get('%s:%s/web?db=%s'%(self.host, self.port, self.db) )
-        # else:
-        #     s.get('%s/web?db=%s'%(self.host, self.db))
         headers = {
             'Content-Type':'application/json',
             'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:27.0) Gecko/20100101 Firefox/27.0',
